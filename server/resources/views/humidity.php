@@ -37,7 +37,7 @@
             window.setInterval(function() {
                 $.get('/api/v1/temp_hum/latest', function(data) {
                     var length = chartData[0].values.length;
-                    lastTime = chartData[0].values[length - 1];
+                    lastTime = chartData[0].values[length - 1].time;
                     if (data && data.time > lastTime) {
                         chart.push([{
                             time: data.time,
