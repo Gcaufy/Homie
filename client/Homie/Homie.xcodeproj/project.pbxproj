@@ -26,6 +26,7 @@
 		93464A8E1BF71C6B00F89548 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93464A851BF71C6B00F89548 /* AFURLSessionManager.m */; };
 		93464A921BF722F300F89548 /* SettingScenarioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93464A911BF722F300F89548 /* SettingScenarioTableViewController.m */; };
 		93464A951BF7275800F89548 /* AllDevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93464A941BF7275800F89548 /* AllDevicesTableViewController.m */; };
+		939478D01BF7BDA600839F48 /* EnvironmentInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939478CF1BF7BDA600839F48 /* EnvironmentInfoTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		93464A911BF722F300F89548 /* SettingScenarioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingScenarioTableViewController.m; sourceTree = "<group>"; };
 		93464A931BF7275800F89548 /* AllDevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllDevicesTableViewController.h; sourceTree = "<group>"; };
 		93464A941BF7275800F89548 /* AllDevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllDevicesTableViewController.m; sourceTree = "<group>"; };
+		939478CE1BF7BDA600839F48 /* EnvironmentInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvironmentInfoTableViewController.h; sourceTree = "<group>"; };
+		939478CF1BF7BDA600839F48 /* EnvironmentInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvironmentInfoTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				932FF86F1BF6EA2000AD7F2E /* Supporting Files */,
 				93464A931BF7275800F89548 /* AllDevicesTableViewController.h */,
 				93464A941BF7275800F89548 /* AllDevicesTableViewController.m */,
+				939478CE1BF7BDA600839F48 /* EnvironmentInfoTableViewController.h */,
+				939478CF1BF7BDA600839F48 /* EnvironmentInfoTableViewController.m */,
 			);
 			path = Homie;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				932FF8711BF6EA2000AD7F2E /* main.m in Sources */,
 				93464A871BF71C6B00F89548 /* AFHTTPRequestOperationManager.m in Sources */,
 				93464A8A1BF71C6B00F89548 /* AFSecurityPolicy.m in Sources */,
+				939478D01BF7BDA600839F48 /* EnvironmentInfoTableViewController.m in Sources */,
 				93464A8D1BF71C6B00F89548 /* AFURLResponseSerialization.m in Sources */,
 				93464A861BF71C6B00F89548 /* AFHTTPRequestOperation.m in Sources */,
 			);
