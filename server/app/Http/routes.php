@@ -20,4 +20,7 @@ $app->post('/test', 'TestController@test');
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
     $app->post('temp_hum', 'TemparatureHumidityController@createTemparatureHumidity');
+
+    $app->post('infrared', 'InfraredController@createInfrared');
+    $app->get('infrared/latest', 'InfraredController@getLatest');
 });
