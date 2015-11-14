@@ -5,6 +5,13 @@ use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
+    public function getAllDevices()
+    {
+        $models = Device::all();
+
+        return response()->json($models);
+    }
+
     public function getDevice($dev_key)
     {
         $model = Device::where('dev_key', '=', $dev_key)->first();
