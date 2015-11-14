@@ -22,5 +22,5 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->post('temp_hum', 'TemparatureHumidityController@createTemparatureHumidity');
 
     $app->post('infrared', 'InfraredController@createInfrared');
-    $app->get('infrared/latest', 'InfraredController@getLatest');
+    $app->get('infrared/latest/{time}', 'InfraredController@getLatest');
 });

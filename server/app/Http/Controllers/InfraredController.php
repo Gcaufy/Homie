@@ -12,10 +12,17 @@ class InfraredController extends Controller
         return response()->json($model);
     }
 
-    public function getLatest()
+    public function getLatest($time)
     {
-        $model = Infrared::orderBy('time', 'desc')->first();
+        if (empty($time)) {
+            $changed = false;
+        } else {
+            $changed = Infrared::where('time', '>', $time)->exists();
+        }
 
-        return response()->json($model);
+        return response()->json([
+            'changed' => $changed ? '1' : '0',
+            'time' => time(),
+        ]);
     }
 }
