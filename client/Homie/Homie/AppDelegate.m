@@ -70,30 +70,22 @@
 - (void)localNotification
 {
     NSLog(@"local");
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
-
-//    notification.timeZone = [NSTimeZone defaultTimeZone];
-
-    notification.repeatInterval = 0;
     
-    notification.alertBody =  @"Someone is here!!!";
-    
-    notification.soundName = UILocalNotificationDefaultSoundName;
 
     UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
-    
     UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc] init];
-    category.identifier = @"some";
-    
+    category.identifier = @"someoneBreakin";
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:[NSSet setWithObject:category]];
-    
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     
-    notification.repeatInterval = 0;
-        
-    notification.category = @"some";
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+//    notification.repeatInterval = 0;
+    notification.alertBody =  @"Someone is in your house!!!";
+    notification.soundName = UILocalNotificationDefaultSoundName;
+//    notification.repeatInterval = 0;
+    notification.category = @"someoneBreakin";
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
