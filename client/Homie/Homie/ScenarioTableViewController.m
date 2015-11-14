@@ -9,6 +9,12 @@
 #import "ScenarioTableViewController.h"
 #import "SettingScenarioTableViewController.h"
 
+#define DinningRoom_Light_DevKey        @"gSkx2IVxmcb1vrRdxLzFNla8"
+#define BedRoom_Light_DevKey            @"IaNHSxlHOCQi8j4Yn9jVp0Id"
+#define KitchenRoom_Light_DevKey        @"hoArgJtbDZhobWLExqO2OLcY"
+#define BathRoom_Light_DevKey           @"XB5d5fZehHbSfPwtg55YxiBb"
+#define DinningRoom_Fan_DevKey          @"yDSyUtmkeyaCaxnRoeNsJp6l"
+
 @interface ScenarioTableViewController ()
 @property (nonatomic, readwrite, assign) BOOL isCheckedBedTime;
 @property (nonatomic, readwrite, assign) BOOL isCheckedVocationTime;
@@ -48,8 +54,6 @@
 {
     [super viewDidLoad];
     self.title = @"Scenario";
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(edit:)];
 }
 
 #pragma mark - table view data source
