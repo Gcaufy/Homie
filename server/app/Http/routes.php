@@ -15,6 +15,9 @@ $app->get('/', function () use ($app) {
     return $app->welcome();
 });
 
+$app->get('/test', 'TestController@test');
+$app->post('/test', 'TestController@test');
+
 $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
     $app->post('sensor', 'SensorController@createSensor');
 });
