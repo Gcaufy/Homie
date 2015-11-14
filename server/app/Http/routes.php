@@ -20,6 +20,7 @@ $app->post('/test', 'TestController@test');
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
     $app->post('temp_hum', 'TemparatureHumidityController@createTemparatureHumidity');
+    $app->get('temp_hum/latest', 'TemparatureHumidityController@getLatest');
 
     $app->post('infrared', 'InfraredController@createInfrared');
     $app->get('infrared/latest/{time}', 'InfraredController@getLatest');
@@ -30,3 +31,5 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
 });
 
 $app->get('/camera', 'FrontendController@camera');
+$app->get('/temparature', 'FrontendController@temparature');
+$app->get('/humidity', 'FrontendController@humidity');
