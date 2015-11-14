@@ -1,0 +1,37 @@
+[
+    {
+        "devKey": "gSkx2IVxmcb1vrRdxLzFNla8",
+        "name": "DinningRoom-Light",
+        "desc": "DinningRoom-Light",
+        "pin": "10",
+        "status": "0"
+    },
+    {
+        "devKey": "IaNHSxlHOCQi8j4Yn9jVp0Id",
+        "name": "BedRoom-Light",
+        "desc": "BedRoom-Light",
+        "pin": "9",
+        "status": "0"
+    },
+    {
+        "devKey": "hoArgJtbDZhobWLExqO2OLcY",
+        "name": "KitchenRoom-Light",
+        "desc": "KitchenRoom-Light",
+        "pin": "11",
+        "status": "0"
+    },
+    {
+        "devKey": "XB5d5fZehHbSfPwtg55YxiBb",
+        "name": "BathRoom-Light",
+        "desc": "BathRoom-Light",
+        "pin": "0",
+        "status": "0"
+    },
+    {
+        "devKey": "yDSyUtmkeyaCaxnRoeNsJp6l",
+        "name": "DinningRoom-Fan",
+        "desc": "DinningRoom-Fan",
+        "pin": "18",
+        "status": "0"
+    }
+]
