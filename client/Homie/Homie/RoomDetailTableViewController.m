@@ -54,7 +54,7 @@
             {
                 return 1;
             }
-            else if ([self.roomName isEqualToString:@"Kitchen Room"])
+            else if ([self.roomName isEqualToString:@"Kitchen"])
             {
                 return 1;
             }
@@ -118,7 +118,7 @@
                 cell.textLabel.text = @"My Light";
                 return cell;
             }
-            else if ([self.roomName isEqualToString:@"Kitchen Room"])
+            else if ([self.roomName isEqualToString:@"Kitchen"])
             {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                 cell.textLabel.text = @"My Light";
@@ -176,7 +176,7 @@
             else if ([self.roomName isEqualToString:@"Bed Room"])
             {
             }
-            else if ([self.roomName isEqualToString:@"Kitchen Room"])
+            else if ([self.roomName isEqualToString:@"Kitchen"])
             {
             }
             else if ([self.roomName isEqualToString:@"Bath Room"])
@@ -185,21 +185,6 @@
             else
             {
             }
-            
-//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"123" preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-//                ;
-//            }];
-//            UIAlertAction *alertAction2 = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                ;
-//            }];
-//            
-//            [alertController addAction:alertAction];
-//            [alertController addAction:alertAction2];
-//            
-//            [self presentViewController:alertController animated:YES completion:nil];
-//            
-            
             break;
         }
         case 1:

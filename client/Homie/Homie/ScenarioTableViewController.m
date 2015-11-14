@@ -7,12 +7,15 @@
 //
 
 #import "ScenarioTableViewController.h"
+#import "SettingScenarioTableViewController.h"
 
 @interface ScenarioTableViewController ()
 @property (nonatomic, readwrite, assign) BOOL isCheckedBedTime;
 @property (nonatomic, readwrite, assign) BOOL isCheckedVocationTime;
 @property (nonatomic, readwrite, assign) BOOL isCheckedPartyTime;
 @property (nonatomic, readwrite, assign) NSInteger checkedNum;
+@property (nonatomic, readwrite, assign) BOOL isEdit;
+@property (nonatomic, readwrite, strong) UIAlertController *alertController;
 @end
 
 @implementation ScenarioTableViewController
@@ -26,8 +29,17 @@
         _isCheckedVocationTime = NO;
         _isCheckedPartyTime = NO;
         _checkedNum = -1;
+        _isEdit = NO;
     }
     return self;
+}
+
+#pragma mark - property
+
+- (void)setIsEdit:(BOOL)isEdit
+{
+    _isEdit = isEdit;
+    [self.tableView reloadData];
 }
 
 #pragma mark - view life cycle
@@ -36,7 +48,8 @@
 {
     [super viewDidLoad];
     self.title = @"Scenario";
-//    self.tabBarItem.title = @"Scenario";
+    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleDone target:self action:@selector(edit:)];
 }
 
 #pragma mark - table view data source
@@ -48,7 +61,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (self.isEdit)
+    {
+        return 3;
+    }
+    else
+    {
+        return 3;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -59,7 +79,14 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
             cell.textLabel.text = @"Bed Time";
-            cell.accessoryType = self.isCheckedBedTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            if (self.isEdit)
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            else
+            {
+                cell.accessoryType = self.isCheckedBedTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            }
             return cell;
             break;
         }
@@ -67,7 +94,14 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
             cell.textLabel.text = @"Vocation Time";
-            cell.accessoryType = self.isCheckedVocationTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            if (self.isEdit)
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            else
+            {
+                cell.accessoryType = self.isCheckedVocationTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            }
             return cell;
             break;
         }
@@ -75,7 +109,21 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
             cell.textLabel.text = @"Party Time";
-            cell.accessoryType = self.isCheckedPartyTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            if (self.isEdit)
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            else
+            {
+                cell.accessoryType = self.isCheckedPartyTime ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            }
+            return cell;
+            break;
+        }
+        case 3:
+        {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            cell.textLabel.text = @"Add More";
             return cell;
             break;
         }
@@ -93,40 +141,87 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.selected = NO;
     
-    if (self.checkedNum >= 0)
+    if (indexPath.row == 3)
     {
-        UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
-        UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.checkedNum inSection:0]];
+        __weak ScenarioTableViewController *weakSelf = self;
         
-        if (self.checkedNum == indexPath.row)
+        self.alertController = [UIAlertController alertControllerWithTitle:nil message:@"Scenario Name" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *alertActionCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            ;
+        }];
+        UIAlertAction *alertActionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *scenarioName = [weakSelf.alertController.textFields[0] text];
+            [weakSelf.navigationController pushViewController:[[SettingScenarioTableViewController alloc] initWithScenarioName:scenarioName] animated:YES];
+        }];
+
+        [self.alertController addAction:alertActionCancel];
+        [self.alertController addAction:alertActionOK];
+        
+        [self.alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            ;
+        }];
+
+        [self presentViewController:self.alertController animated:YES completion:nil];
+        return;
+    }
+    
+    if (self.isEdit)
+    {
+        //TDOO: Edit
+    }
+    else
+    {
+        if (self.checkedNum >= 0)
         {
-            if (newCell.accessoryType == UITableViewCellAccessoryNone)
+            UITableViewCell *newCell = [tableView cellForRowAtIndexPath:indexPath];
+            UITableViewCell *oldCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.checkedNum inSection:0]];
+            
+            if (self.checkedNum == indexPath.row)
+            {
+                if (newCell.accessoryType == UITableViewCellAccessoryNone)
+                {
+                    newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                    //TODO: NET according indexPath.row
+                }
+                else if (newCell.accessoryType == UITableViewCellAccessoryCheckmark)
+                {
+                    newCell.accessoryType = UITableViewCellAccessoryNone;
+                    //TODO: NET default
+                }
+    //            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            }
+            else
             {
                 newCell.accessoryType = UITableViewCellAccessoryCheckmark;
+                oldCell.accessoryType = UITableViewCellAccessoryNone;
+    //            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0], [NSIndexPath indexPathForRow:self.checkedNum inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 //TODO: NET according indexPath.row
+                self.checkedNum = indexPath.row;
             }
-            else if (newCell.accessoryType == UITableViewCellAccessoryCheckmark)
-            {
-                newCell.accessoryType = UITableViewCellAccessoryNone;
-                //TODO: NET default
-            }
-//            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
         else
         {
-            newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-            oldCell.accessoryType = UITableViewCellAccessoryNone;
-//            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0], [NSIndexPath indexPathForRow:self.checkedNum inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
             //TODO: NET according indexPath.row
             self.checkedNum = indexPath.row;
         }
     }
+}
+
+#pragma mark - target
+
+- (void)edit: (UIBarButtonItem *)item
+{
+    if ([item.title isEqualToString:@"Edit"])
+    {
+        item.title = @"Cancel";
+        self.isEdit = YES;
+    }
     else
     {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //TODO: NET according indexPath.row
-        self.checkedNum = indexPath.row;
+        item.title = @"Edit";
+        self.isEdit = NO;
     }
 }
 

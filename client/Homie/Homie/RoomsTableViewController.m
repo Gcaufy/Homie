@@ -69,7 +69,7 @@
         case 2:
         {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-            cell.textLabel.text = @"Kitchen Room";
+            cell.textLabel.text = @"Kitchen";
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
             break;
