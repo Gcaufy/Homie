@@ -15,17 +15,29 @@ import time
 #             print "Noanybody!"
 #         time.sleep(2)
 
+# init()
+# detect()
 
 pin = 23
+beeppin = 24
 
 def init(pin):
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(pin, GPIO.IN)
+    GPIO.setup(beeppin, GPIO.OUT)
     pass
 
 def detect():
     return GPIO.input(pin)
+
+
+def beep():
+    GPIO.output(beeppin, 0)
+
+def shut():
+    GPIO.output(beeppin, 1)
+
 
 if __name__ == '__main__':
     init(23)

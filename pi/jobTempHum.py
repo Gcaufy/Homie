@@ -6,9 +6,13 @@ import json
 
 def post():
     url = 'http://homie.com/api/v1/temp_hum'
-    (temp, hum) = dht.getData(4)
-    data = {"temp": str(temp), "hum": str(hum), "time": str(time.time())}
+    rst = dht.getData(4)
+    if rst != None:
+        (temp, hum) = rst
+        data = {"temp": str(temp), "hum": str(hum), "time": str(time.time())}
+        print 'Temp is ' + str(temp) + ', Hum is ' + str(hum)
+        r = requests.post(url, data)
 
-    r = requests.post(url, data)
-
-post()
+while True:
+    data = post()
+    time.sleep(1)
