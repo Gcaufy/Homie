@@ -23,4 +23,7 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
 
     $app->post('infrared', 'InfraredController@createInfrared');
     $app->get('infrared/latest/{time}', 'InfraredController@getLatest');
+
+    $app->get('device/{dev_key}', 'DeviceController@getDevice');
+    $app->put('device/{dev_key}', 'DeviceController@updateDevice');
 });
