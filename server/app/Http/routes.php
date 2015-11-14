@@ -19,5 +19,5 @@ $app->get('/test', 'TestController@test');
 $app->post('/test', 'TestController@test');
 
 $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], function ($app) {
-    $app->post('sensor', 'SensorController@createSensor');
+    $app->post('temp_hum', 'TemparatureHumidityController@createTemparatureHumidity');
 });

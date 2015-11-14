@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sensor extends Model
+class TemparatureHumidity extends Model
 {
-    protected $table = 'tbl_sensor';
+    protected $table = 'tbl_temparature_humidity';
+
+    public $timestamps = false;
 
     protected $fillable = ['temp', 'hum', 'time'];
 }
