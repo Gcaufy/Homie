@@ -27,3 +27,5 @@ $app->group(['prefix' => 'api/v1', 'namespace' => 'App\Http\Controllers'], funct
     $app->get('device/{dev_key}', 'DeviceController@getDevice');
     $app->post('device/{dev_key}', 'DeviceController@updateDevice');
 });
+
+$app->get('/camera', 'FrontendController@camera');
