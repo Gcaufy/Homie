@@ -22,7 +22,7 @@
             }];
         for (var i = 0; i < models.length; i++) {
             chartData[0].values.push({
-                time: models[i].time,
+                time: parseInt(models[i].time),
                 y: models[i].hum,
             });
         }
@@ -40,7 +40,7 @@
                     lastTime = chartData[0].values[length - 1].time;
                     if (data && data.time > lastTime) {
                         chart.push([{
-                            time: data.time,
+                            time: parseInt(data.time),
                             y: data.hum,
                         }]);
                     }
