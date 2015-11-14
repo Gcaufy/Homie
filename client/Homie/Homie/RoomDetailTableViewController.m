@@ -8,6 +8,7 @@
 
 #import "RoomDetailTableViewController.h"
 #import "WebViewController.h"
+#import "EnvironmentInfoTableViewController.h"
 
 @interface RoomDetailTableViewController ()
 @property (nonatomic, readwrite, strong) NSString *roomName;
@@ -37,7 +38,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    if ([self.roomName isEqualToString:@"Dinning Room"])
+    {
+        return 3;
+    }
+    else if ([self.roomName isEqualToString:@"Bed Room"])
+    {
+        return 1;
+    }
+    else if ([self.roomName isEqualToString:@"Kitchen"])
+    {
+        return 1;
+    }
+    else if ([self.roomName isEqualToString:@"Bath Room"])
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -189,11 +209,12 @@
         }
         case 1:
         {
-            [self.navigationController pushViewController:[[WebViewController alloc] initWithURLString:@"http://www.baidu.com"] animated: YES];
+            [self.navigationController pushViewController:[[WebViewController alloc] initWithURLString:@"http://192.241.199.31/camera"] animated: YES];
             break;
         }
         case 2:
         {
+            [self.navigationController pushViewController:[[EnvironmentInfoTableViewController alloc] init] animated: YES];
             break;
         }
         default:

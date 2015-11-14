@@ -22,7 +22,7 @@
             }];
         for (var i = 0; i < models.length; i++) {
             chartData[0].values.push({
-                time: models[i].time,
+                time: parseInt(models[i].time),
                 y: models[i].temp,
             });
         }
@@ -32,21 +32,20 @@
                     type: 'time.line',
                     data: chartData,
                     axes: ['left', 'bottom', 'right']
-                }),
-                interval = 5 * 60 * 1000;
+                });
 
             window.setInterval(function() {
-                $.get('temp_hum/latest', function(data) {
+                $.get('/api/v1/temp_hum/latest', function(data) {
                     var length = chartData[0].values.length;
-                    lastTime = chartData[0].values[length - 1];
+                    lastTime = chartData[0].values[length - 1].time;
                     if (data && data.time > lastTime) {
                         chart.push([{
-                            time: data.time,
+                            time: parseInt(data.time),
                             y: data.temp,
                         }]);
                     }
                 });
-            }, interval);
+            }, 1000);
         });
     </script>
 </body>
