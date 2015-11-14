@@ -8,6 +8,7 @@
 
 #import "ScenarioTableViewController.h"
 #import "SettingScenarioTableViewController.h"
+#import "AFNetworking.h"
 
 #define DinningRoom_Light_DevKey        @"gSkx2IVxmcb1vrRdxLzFNla8"
 #define BedRoom_Light_DevKey            @"IaNHSxlHOCQi8j4Yn9jVp0Id"
@@ -185,21 +186,19 @@
                 if (newCell.accessoryType == UITableViewCellAccessoryNone)
                 {
                     newCell.accessoryType = UITableViewCellAccessoryCheckmark;
-                    //TODO: NET according indexPath.row
+                    [self useScenario:indexPath.row];
                 }
                 else if (newCell.accessoryType == UITableViewCellAccessoryCheckmark)
                 {
                     newCell.accessoryType = UITableViewCellAccessoryNone;
-                    //TODO: NET default
+                    [self useDefault];
                 }
-    //            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             }
             else
             {
                 newCell.accessoryType = UITableViewCellAccessoryCheckmark;
                 oldCell.accessoryType = UITableViewCellAccessoryNone;
-    //            [tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:0], [NSIndexPath indexPathForRow:self.checkedNum inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                //TODO: NET according indexPath.row
+                [self useScenario:indexPath.row];
                 self.checkedNum = indexPath.row;
             }
         }
@@ -207,7 +206,7 @@
         {
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            //TODO: NET according indexPath.row
+            [self useScenario:indexPath.row];
             self.checkedNum = indexPath.row;
         }
     }
@@ -227,6 +226,174 @@
         item.title = @"Edit";
         self.isEdit = NO;
     }
+}
+
+#pragma mark - private
+
+- (void)useScenario: (NSInteger)row
+{
+    switch (row)
+    {
+        case 0:
+        {
+            [self useBedTime];
+            break;
+        }
+        case 1:
+        {
+            [self useVocationTime];
+            break;
+        }
+        case 2:
+        {
+            [self usePartyTime];
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+- (void)useBedTime
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/gSkx2IVxmcb1vrRdxLzFNla8" parameters: @{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/IaNHSxlHOCQi8j4Yn9jVp0Id" parameters:@{@"status": @"1"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/hoArgJtbDZhobWLExqO2OLcY" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/XB5d5fZehHbSfPwtg55YxiBb" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/yDSyUtmkeyaCaxnRoeNsJp6l" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)useVocationTime
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/gSkx2IVxmcb1vrRdxLzFNla8" parameters: @{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/IaNHSxlHOCQi8j4Yn9jVp0Id" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/hoArgJtbDZhobWLExqO2OLcY" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/XB5d5fZehHbSfPwtg55YxiBb" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/yDSyUtmkeyaCaxnRoeNsJp6l" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)usePartyTime
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/gSkx2IVxmcb1vrRdxLzFNla8" parameters: @{@"status": @"1"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/IaNHSxlHOCQi8j4Yn9jVp0Id" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/hoArgJtbDZhobWLExqO2OLcY" parameters:@{@"status": @"1"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/XB5d5fZehHbSfPwtg55YxiBb" parameters:@{@"status": @"1"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/yDSyUtmkeyaCaxnRoeNsJp6l" parameters:@{@"status": @"1"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)useDefault
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/gSkx2IVxmcb1vrRdxLzFNla8" parameters: @{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/IaNHSxlHOCQi8j4Yn9jVp0Id" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/hoArgJtbDZhobWLExqO2OLcY" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/XB5d5fZehHbSfPwtg55YxiBb" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    [manager GET:@"http://192.241.199.31/api/v1/device/yDSyUtmkeyaCaxnRoeNsJp6l" parameters:@{@"status": @"0"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end
