@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		932FF8711BF6EA2000AD7F2E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF8701BF6EA2000AD7F2E /* main.m */; };
 		932FF8741BF6EA2000AD7F2E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF8731BF6EA2000AD7F2E /* AppDelegate.m */; };
-		932FF87A1BF6EA2000AD7F2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932FF8781BF6EA2000AD7F2E /* Main.storyboard */; };
 		932FF87C1BF6EA2000AD7F2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 932FF87B1BF6EA2000AD7F2E /* Assets.xcassets */; };
 		932FF87F1BF6EA2000AD7F2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 932FF87D1BF6EA2000AD7F2E /* LaunchScreen.storyboard */; };
+		932FF8881BF6EBE700AD7F2E /* ScenarioTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF8871BF6EBE700AD7F2E /* ScenarioTableViewController.m */; };
+		932FF88B1BF6EC0600AD7F2E /* RoomsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF88A1BF6EC0600AD7F2E /* RoomsTableViewController.m */; };
+		932FF88E1BF6FE4C00AD7F2E /* RoomDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF88D1BF6FE4C00AD7F2E /* RoomDetailTableViewController.m */; };
+		932FF8931BF704E200AD7F2E /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932FF8921BF704E200AD7F2E /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,10 +22,18 @@
 		932FF8701BF6EA2000AD7F2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		932FF8721BF6EA2000AD7F2E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		932FF8731BF6EA2000AD7F2E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		932FF8791BF6EA2000AD7F2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		932FF87B1BF6EA2000AD7F2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		932FF87E1BF6EA2000AD7F2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		932FF8801BF6EA2000AD7F2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		932FF8861BF6EBE700AD7F2E /* ScenarioTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenarioTableViewController.h; sourceTree = "<group>"; };
+		932FF8871BF6EBE700AD7F2E /* ScenarioTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenarioTableViewController.m; sourceTree = "<group>"; };
+		932FF8891BF6EC0600AD7F2E /* RoomsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsTableViewController.h; sourceTree = "<group>"; };
+		932FF88A1BF6EC0600AD7F2E /* RoomsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsTableViewController.m; sourceTree = "<group>"; };
+		932FF88C1BF6FE4C00AD7F2E /* RoomDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomDetailTableViewController.h; sourceTree = "<group>"; };
+		932FF88D1BF6FE4C00AD7F2E /* RoomDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomDetailTableViewController.m; sourceTree = "<group>"; };
+		932FF88F1BF7043700AD7F2E /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		932FF8911BF704E200AD7F2E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		932FF8921BF704E200AD7F2E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,14 @@
 			isa = PBXGroup;
 			children = (
 				932FF8731BF6EA2000AD7F2E /* AppDelegate.m */,
+				932FF8861BF6EBE700AD7F2E /* ScenarioTableViewController.h */,
+				932FF8871BF6EBE700AD7F2E /* ScenarioTableViewController.m */,
+				932FF8891BF6EC0600AD7F2E /* RoomsTableViewController.h */,
+				932FF88A1BF6EC0600AD7F2E /* RoomsTableViewController.m */,
+				932FF88C1BF6FE4C00AD7F2E /* RoomDetailTableViewController.h */,
+				932FF88D1BF6FE4C00AD7F2E /* RoomDetailTableViewController.m */,
+				932FF8911BF704E200AD7F2E /* WebViewController.h */,
+				932FF8921BF704E200AD7F2E /* WebViewController.m */,
 				932FF86F1BF6EA2000AD7F2E /* Supporting Files */,
 			);
 			path = Homie;
@@ -64,8 +83,8 @@
 		932FF86F1BF6EA2000AD7F2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				932FF88F1BF7043700AD7F2E /* WebKit.framework */,
 				932FF8721BF6EA2000AD7F2E /* AppDelegate.h */,
-				932FF8781BF6EA2000AD7F2E /* Main.storyboard */,
 				932FF87B1BF6EA2000AD7F2E /* Assets.xcassets */,
 				932FF87D1BF6EA2000AD7F2E /* LaunchScreen.storyboard */,
 				932FF8801BF6EA2000AD7F2E /* Info.plist */,
@@ -134,7 +153,6 @@
 			files = (
 				932FF87F1BF6EA2000AD7F2E /* LaunchScreen.storyboard in Resources */,
 				932FF87C1BF6EA2000AD7F2E /* Assets.xcassets in Resources */,
-				932FF87A1BF6EA2000AD7F2E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +163,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932FF88B1BF6EC0600AD7F2E /* RoomsTableViewController.m in Sources */,
+				932FF8931BF704E200AD7F2E /* WebViewController.m in Sources */,
+				932FF88E1BF6FE4C00AD7F2E /* RoomDetailTableViewController.m in Sources */,
+				932FF8881BF6EBE700AD7F2E /* ScenarioTableViewController.m in Sources */,
 				932FF8741BF6EA2000AD7F2E /* AppDelegate.m in Sources */,
 				932FF8711BF6EA2000AD7F2E /* main.m in Sources */,
 			);
@@ -153,14 +175,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		932FF8781BF6EA2000AD7F2E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				932FF8791BF6EA2000AD7F2E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		932FF87D1BF6EA2000AD7F2E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -256,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Homie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.warriorfifth.Homie;
@@ -267,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Homie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.warriorfifth.Homie;
