@@ -80,7 +80,7 @@
     
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:5];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
 //    notification.repeatInterval = 0;
     notification.alertBody =  @"Someone is in your house!!!";
     notification.soundName = UILocalNotificationDefaultSoundName;
