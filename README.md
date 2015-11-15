@@ -22,10 +22,10 @@ This is the screenshot of the app.
 ### Usage
 
 1. Pull the code to pi
-`git clone https://github.com/Gcaufy/Homie`
+> git clone https://github.com/Gcaufy/Homie
 
 2. Start the service
-`sudo yourpath/homie start`
+> sudo yourpath/homie start
 
 ### Contribution
 
