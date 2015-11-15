@@ -19,30 +19,36 @@
         var models = JSON.parse('<?= json_encode($models) ?>'),
             chartData = [{
                 values: []
-            }];
+            }],
+            latestTime = 0,
+            time;
         for (var i = 0; i < models.length; i++) {
+            time = parseInt(models[i].time);
+            if (time > latestTime) {
+                latestTime = time;
+            }
             chartData[0].values.push({
-                time: parseInt(models[i].time),
+                time: time,
                 y: models[i].temp,
             });
         }
 
         $(function() {
             var chart = $('#chart').epoch({
-                    type: 'time.line',
-                    data: chartData,
-                    axes: ['left', 'bottom', 'right']
-                });
+                type: 'time.line',
+                data: chartData,
+                axes: ['left', 'bottom', 'right']
+            });
 
             window.setInterval(function() {
-                $.get('/api/v1/temp_hum/latest', function(data) {
-                    var length = chartData[0].values.length;
-                    lastTime = chartData[0].values[length - 1].time;
-                    if (data && data.time > lastTime) {
+                $.get('/api/v1/temp_hum/latest/' + latestTime, function(data) {
+                    if (typeof data === 'object' && Object.keys(data).length > 0) {
+                        time = parseInt(data.time);
                         chart.push([{
-                            time: parseInt(data.time),
+                            time: time,
                             y: data.temp,
                         }]);
+                        latestTime = time;
                     }
                 });
             }, 1000);
