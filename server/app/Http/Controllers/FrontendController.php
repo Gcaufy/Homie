@@ -13,6 +13,8 @@ class FrontendController extends Controller
     public function temparature()
     {
         $models = TemparatureHumidity::orderBy('time', 'desc')->limit(12)->get();
+        $models = $models->toArray();
+        usort($models, [$this, 'compareTimeOfModels']);
 
         return view('temparature', [
             'models' => $models,
@@ -22,9 +24,21 @@ class FrontendController extends Controller
     public function humidity()
     {
         $models = TemparatureHumidity::orderBy('time', 'desc')->limit(12)->get();
+        $models = $models->toArray();
+        usort($models, [$this, 'compareTimeOfModels']);
 
         return view('humidity', [
             'models' => $models,
         ]);
+    }
+
+    public function compareTimeOfModels($a, $b)
+    {
+        if ($a['time'] < $b['time']) {
+            return -1;
+        } elseif ($a['time'] > $b['time']) {
+            return 1;
+        }
+        return 0;
     }
 }
