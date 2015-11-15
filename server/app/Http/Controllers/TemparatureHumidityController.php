@@ -12,9 +12,9 @@ class TemparatureHumidityController extends Controller
         return response()->json($model);
     }
 
-    public function getLatest()
+    public function getLatest($time)
     {
-        $model = TemparatureHumidity::orderBy('time', 'desc')->first();
+        $model = TemparatureHumidity::where('time', '>', $time)->orderBy('time', 'desc')->first();
 
         return response()->json($model);
     }

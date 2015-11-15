@@ -19,8 +19,12 @@
         var models = JSON.parse('<?= json_encode($models) ?>'),
             chartData = [{
                 values: []
-            }];
+            }],
+            latestTime = 0;
         for (var i = 0; i < models.length; i++) {
+            if (models[i].time > latestTime) {
+                latestTime = models[i].time;
+            }
             chartData[0].values.push({
                 time: parseInt(models[i].time),
                 y: models[i].temp,
@@ -29,16 +33,15 @@
 
         $(function() {
             var chart = $('#chart').epoch({
-                    type: 'time.line',
-                    data: chartData,
-                    axes: ['left', 'bottom', 'right']
-                });
+                type: 'time.line',
+                data: chartData,
+                axes: ['left', 'bottom', 'right']
+            });
 
             window.setInterval(function() {
-                $.get('/api/v1/temp_hum/latest', function(data) {
-                    var length = chartData[0].values.length;
-                    lastTime = chartData[0].values[length - 1].time;
-                    if (data && data.time > lastTime) {
+                $.get('/api/v1/temp_hum/latest/' + latestTime, function(data) {
+                    if (typeof data === 'object' && Object.keys(data).length > 0) {
+                        latestTime = data.time;
                         chart.push([{
                             time: parseInt(data.time),
                             y: data.temp,
