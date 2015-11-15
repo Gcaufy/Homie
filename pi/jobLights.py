@@ -31,10 +31,11 @@ while True:
         else:
             status = 1
 
+        
         if item['dev_key'] == 'gSkx2IVxmcb1vrRdxLzFNla8':
             if status == 0:
                 if pMusic == None:
-                    pMusic = subprocess.Popen(['mplayer', '/home/pi/mine/project/IHS/music/party.wav'])
+                    pMusic = subprocess.Popen(['mplayer', '-af', 'volume=0', '/home/pi/mine/project/IHS/music/party.wav'])
                     print 'Started music'
             else:
                 if pMusic != None:
