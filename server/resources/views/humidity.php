@@ -20,15 +20,13 @@
             chartData = [{
                 values: []
             }],
-            latestTime = 0,
-            time;
+            latestTime = 0;
         for (var i = 0; i < models.length; i++) {
-            time = parseInt(models[i].time);
-            if (time > latestTime) {
-                latestTime = time;
+            if (models[i].time > latestTime) {
+                latestTime = models[i].time;
             }
             chartData[0].values.push({
-                time: time,
+                time: parseInt(models[i].time),
                 y: models[i].hum,
             });
         }
@@ -43,12 +41,11 @@
             window.setInterval(function() {
                 $.get('/api/v1/temp_hum/latest/' + latestTime, function(data) {
                     if (typeof data === 'object' && Object.keys(data).length > 0) {
-                        time = parseInt(data.time);
+                        latestTime = data.time;
                         chart.push([{
-                            time: time,
+                            time: parseInt(data.time),
                             y: data.hum,
                         }]);
-                        latestTime = time;
                     }
                 });
             }, 1000);
