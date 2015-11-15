@@ -15,4 +15,4 @@ def post():
 
 while True:
     data = post()
-    time.sleep(300)
+    time.sleep(10)
