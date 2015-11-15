@@ -9,6 +9,7 @@
 #import "RoomDetailTableViewController.h"
 #import "WebViewController.h"
 #import "EnvironmentInfoTableViewController.h"
+#import "AFNetworking.h"
 
 @interface RoomDetailTableViewController ()
 @property (nonatomic, readwrite, strong) NSString *roomName;
@@ -118,12 +119,27 @@
                 {
                     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                     cell.textLabel.text = @"My Light";
+                    
+                    UISwitch *lightSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(315, 7, 20, 10)];
+                    [lightSwitch setOn:NO];
+                    [lightSwitch addTarget:self action:@selector(switchLight:) forControlEvents:UIControlEventValueChanged];
+                    
+                    [cell.contentView addSubview:lightSwitch];
+                    
+                    
                     return cell;
                 }
                 else if (indexPath.row == 1)
                 {
                     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                     cell.textLabel.text = @"My Fan";
+                    
+                    UISwitch *lightSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(315, 7, 20, 10)];
+                    [lightSwitch setOn:NO];
+                    [lightSwitch addTarget:self action:@selector(switchFan:) forControlEvents:UIControlEventValueChanged];
+                    
+                    [cell.contentView addSubview:lightSwitch];
+                    
                     return cell;
                 }
                 else
@@ -136,18 +152,39 @@
             {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                 cell.textLabel.text = @"My Light";
+                
+                UISwitch *lightSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(315, 7, 20, 10)];
+                [lightSwitch setOn:NO];
+                [lightSwitch addTarget:self action:@selector(switchLight:) forControlEvents:UIControlEventValueChanged];
+                
+                [cell.contentView addSubview:lightSwitch];
+                
                 return cell;
             }
             else if ([self.roomName isEqualToString:@"Kitchen"])
             {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                 cell.textLabel.text = @"My Light";
+                
+                UISwitch *lightSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(315, 7, 20, 10)];
+                [lightSwitch setOn:NO];
+                [lightSwitch addTarget:self action:@selector(switchLight:) forControlEvents:UIControlEventValueChanged];
+                
+                [cell.contentView addSubview:lightSwitch];
+                
                 return cell;
             }
             else if ([self.roomName isEqualToString:@"Bath Room"])
             {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
                 cell.textLabel.text = @"My Light";
+                
+                UISwitch *lightSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(315, 7, 20, 10)];
+                [lightSwitch setOn:NO];
+                [lightSwitch addTarget:self action:@selector(switchLight:) forControlEvents:UIControlEventValueChanged];
+                
+                [cell.contentView addSubview:lightSwitch];
+                
                 return cell;
             }
             else
@@ -222,6 +259,69 @@
             break;
         }
     }
+}
+
+#pragma mark - target
+
+-(void)switchLight:(id)sender
+{
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn = [switchButton isOn];
+    
+    NSString *status = isButtonOn ? @"1" : @"0";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    if ([self.roomName isEqualToString:@"Dinning Room"])
+    {
+        [manager POST:@"http://192.241.199.31/api/v1/device/gSkx2IVxmcb1vrRdxLzFNla8" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    else if ([self.roomName isEqualToString:@"Bed Room"])
+    {
+        [manager POST:@"http://192.241.199.31/api/v1/device/IaNHSxlHOCQi8j4Yn9jVp0Id" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    else if ([self.roomName isEqualToString:@"Kitchen"])
+    {
+        [manager POST:@"http://192.241.199.31/api/v1/device/hoArgJtbDZhobWLExqO2OLcY" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    else if ([self.roomName isEqualToString:@"Bath Room"])
+    {
+        [manager POST:@"http://192.241.199.31/api/v1/device/XB5d5fZehHbSfPwtg55YxiBb" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
+    else
+    {
+    }
+}
+
+-(void)switchFan:(id)sender
+{
+    UISwitch *switchButton = (UISwitch*)sender;
+    BOOL isButtonOn = [switchButton isOn];
+    
+    NSString *status = isButtonOn ? @"1" : @"0";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:@"http://192.241.199.31/api/v1/device/yDSyUtmkeyaCaxnRoeNsJp6l" parameters:@{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end
